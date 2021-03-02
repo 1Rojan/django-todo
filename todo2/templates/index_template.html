@@ -1,0 +1,44 @@
+{% extends 'base_template.html' %}
+
+{% block base %}
+<h2 class="text-center">TodoLists</h2>
+
+
+<div class="row p-3">
+    <div class="col-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <!--    {{form}}-->
+            <label for="id_item">Name :</label>
+            <input type="text" name="item" maxlength="255" required="" id="id_item">
+            <input class="btn btn-sm btn-secondary" type="submit">
+        </form>
+    </div>
+
+    {% for list in lists %}
+    <div class="col-12 p-3">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                <div class="col-9">
+                {% if list.completed %}
+                <strike><p class="card-text">{{list.item}} </p></strike>
+                {% else %}
+                <p class="card-text">{{list.item}} </p>
+                {% endif %}
+                </div>
+                <div class="col-3 ">
+                <a href="{% url 'todo2:edit_template' list.id %}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="{% url 'todo2:delete_template' list.id %}" class="btn btn-sm btn-danger">Delete</a>
+<!--                <input type="checkbox">Complete-->
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

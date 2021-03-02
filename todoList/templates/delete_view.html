@@ -1,0 +1,8 @@
+<h2>Click Sure if you want to delete</h2>
+
+<form method = 'post' action="">
+    {% csrf_token %}
+    <p>{{item}}</p>
+    <input type="submit" value="sure">
+</form>
+<a href="{% url 'index' %}">cancel</a>

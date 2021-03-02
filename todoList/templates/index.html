@@ -1,0 +1,21 @@
+<h1>Lists</h1>
+<form action="/todo/" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="submit">
+</form>
+<ul>
+    {% for data in datasets %}
+
+    <li style="list-style:none;">
+        {% if data.completed == True %}
+            <strike>{{forloop.counter}} {{data.lists}}</strike>
+        {%else%}
+        {{forloop.counter}} {{data.lists}}
+        {% endif%}
+        <a href="{% url 'ediit_view' data.id%}">Edit</a>
+        <a href="{% url 'delete_view' data.id%}">Delete</a>
+    </li>
+
+    {% endfor %}
+</ul>
